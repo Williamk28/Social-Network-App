@@ -1,0 +1,184 @@
+{% extends 'sna/main.html' %} 
+{% load static %} 
+{% block content %}
+
+<div class="profile-body">
+  <div class="left-side">
+
+    <div class="picture">
+      {% if profile.profile_img %}
+        <img class="profile-pic" src="{{profile.profile_img.url}}">
+      {% else %}
+        <img class="profile-pic" src="{% static 'images/default_profile_picture.jpg' %}">
+      {% endif %}
+    </div>
+
+    <div class="profile-content">
+      <span class="profile-name"> {{profile.username}} </span>
+      {% if request.user.username != profile.username %} 
+        {% if profile in friend_list %}
+          <a class="request-button" href="{% url 'unfollow_friend' profile.id %}">
+            Unfollow
+          </a>
+        {% elif friend_request_sent %}
+          <a class="request-button" href="{% url 'friend_request' profile.id %}">
+            Pending
+          </a>
+        {% elif friend_request_exist %}
+          <div class="friend-request-exist">
+            <a class="request-choice" href="{% url 'accept_friend_request' friend_request_exist.id %}">
+              Accept
+            </a>
+            <a class="request-choice" href="{% url 'delete_friend_request' friend_request_exist.id %}">
+              Delete
+            </a>
+          </div>
+        {% else %}
+          <a class="request-button" href="{% url 'friend_request' profile.id %}"> Add </a>
+        {% endif %} 
+      {% else %}
+        <a class="request-button" href="{% url 'account_settings' %}"> Account Settings </a>
+      {% endif %}
+    </div>
+
+    <div class="profile-content">
+      <span class="profile-details">
+        <b>Date of Birth:</b> {{profile.dob}}
+      </span>
+    </div>
+
+    <div class="profile-content">
+      <span class="profile-details"> <b>Email:</b> {{profile.email}} </span>
+    </div>
+
+    <div class="profile-content">
+      <span class="profile-details" id="bio">
+        <b>Bio:</b> {{profile.bio|linebreaksbr}}
+      </span>
+    </div>
+
+    <div class="profile-content">
+      <div class="profile-details">
+        <b>Interests:</b>
+        {% for interests in profile.interests.all %}
+          <a href="/search?interest={{interests}}" class="interest-tag">{{interests}}</a>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if request.user.username == profile.username %}
+      <div class="friend-list">
+        <div class="friend-list-content">
+          <h3>Friends</h3>
+          {% if not friend_list %}
+            <span> Add some friends :) </span>
+          {% else %} 
+            {% for friend in friend_list %}
+              <p>
+                <a class="profile-link" href="{% url 'profile' friend.username %}">
+                  {{friend.username}}
+                </a>
+              </p>
+            {% endfor %} 
+          {% endif %}
+        </div>
+      </div>
+
+      {% if friend_request %}
+        <div class="friend-request">
+          <h3>Friend Requests</h3>
+          {% for profile in friend_request %}
+            <div class="friend-request-content">
+              <a class="profile-link" href="{% url 'profile' profile.sender %}">
+                {{profile.sender}}
+              </a>
+              <a class="request-choice" href="/accept_friend_request/{{profile.id}}">
+                Accept
+              </a>
+              <a class="request-choice" href="/delete_friend_request/{{profile.id}}">
+                Delete
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %} 
+    {% endif %}
+  </div>
+
+  <div class="right-side">
+    {% if profile in friend_list or request.user.username == profile.username %}
+      <div class="upload-post">
+        <form method="POST" enctype="multipart/form-data">
+          {%csrf_token%} {{post_form.message}} {{post_form.image}}
+          <input type="hidden" name="form" value="submit_post">
+          <button name="action" class="upload-post-button" type="submit">
+            Upload Post
+          </button>
+        </form>
+      </div>
+    {% endif %}
+
+    <div>
+      {% for post in post_feed reversed %}
+        <div class="profilepost-body">
+          <div class="post-header">
+            <a class="profile-link" href="{% url 'profile' post.username %}">
+              {{post.username}}
+            </a>
+          </div>
+          
+          <div class="post-date">{{post.post_date}}</div>
+          <hr>
+          <div class="post-message">{{post.message|linebreaksbr}}</div>
+
+          {% if post.image %}
+            <br />
+            <img class="post-image" src="{{post.image.url}}">
+          {% endif %}
+
+          {% if post.no_of_likes == 0 %}
+            <span class="post-likes">0 Likes</span>
+          {% elif post.no_of_likes == 1 %}
+            <span class="post-likes">{{post.no_of_likes}} Like</span>
+          {% else %}
+            <span class="post-likes">{{post.no_of_likes}} Likes</span>
+          {% endif %}
+
+          <a href="/like-post?post_id={{post.id}}" class="icon-link">
+            <img class="icon" src="{% static 'images/like_icon.png' %}">
+          </a>
+
+          <div class="upload-comment">
+            <form method="POST">
+              {%csrf_token%}
+              <input type="hidden" name="form" value="submit_comment">
+              <input type="hidden" name="post" id="post" value="{{post.id}}">
+              {{comment_form.message}}
+              <button class="upload-comment-button" type="submit">
+                Upload Comment
+              </button>
+            </form>
+          </div>
+
+          <div class="post-comments">
+            {% if post.comments.all %} 
+              {% for comment in post.comments.all %}
+                <hr>
+                <div class="post-header">
+                  <a class="profile-link" href="{% url 'profile' post.username %}">
+                    {{comment.username}}
+                  </a>
+                </div>
+                <div class="post-date">{{comment.post_date}}</div>
+                <div class="post-message">{{comment.message|linebreaksbr}}</div>
+              {% endfor %} 
+            {% endif %}
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

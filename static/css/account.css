@@ -1,0 +1,157 @@
+.account-body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #020024, #090979, #00ffe2);
+}
+
+.account-container {
+  max-width: 700px;
+  width: 100%;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+}
+
+.accountTitle {
+  font-size: 35px;
+  text-align: center;
+}
+
+.picture {
+  text-align: center;
+}
+
+.profile-pic {
+  max-width: 200px;
+  max-height: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+.account-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 12px 0;
+}
+
+.account-input {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.account-name {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.bio {
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  width: 100%;
+  max-height: 125px;
+  resize: none;
+}
+
+.form-input {
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.messages {
+  list-style-type: none;
+  color: #50c878;
+}
+
+@media (max-width: 900px) {
+  .accountTitle {
+    font-size: 30px;
+  }
+
+  .account-container {
+    max-width: 80%;
+  }
+
+  .account-input {
+    margin-bottom: 5px;
+  }
+
+  .account-name {
+    font-size: 14px;
+  }
+
+  .account-details {
+    overflow-y: scroll;
+    max-height: 500px;
+    justify-content: center;
+  }
+
+  .account-details::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .profile-pic {
+    max-height: 125px;
+    max-width: 125px;
+  }
+
+  .form-input {
+    height: 30px;
+    font-size: 14px;
+    padding-left: 15px;
+  }
+
+  .bio {
+    font-size: 14px;
+    padding-left: 15px;
+  }
+}
+
+@media (max-width: 475px) {
+  .account-container .account-content {
+    flex-direction: column;
+  }
+
+  .accountTitle {
+    font-size: 25px;
+  }
+
+  .button-wrapper {
+    height: 25px;
+    margin: 10px;
+  }
+
+  .profile-pic {
+    max-height: 100px;
+    max-width: 100px;
+  }
+
+  .account-details {
+    margin: 0px;
+  }
+
+  .form-input {
+    height: 25px;
+    font-size: 12px;
+    padding-left: 15px;
+  }
+
+  .bio {
+    font-size: 12px;
+    padding-left: 15px;
+    height: 70px;
+  }
+}

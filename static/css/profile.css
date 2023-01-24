@@ -1,0 +1,184 @@
+.profile-body {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.left-side {
+  flex: 30%;
+  padding: 10px;
+  background-color: #427aa1;
+}
+
+.profile-content {
+  padding: 10px;
+}
+
+.profile-name {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.profile-details {
+  font-size: 18px;
+}
+
+.friend-list,
+.friend-request {
+  max-height: 40%;
+  width: 60%;
+  background-color: #cacfd2;
+  text-align: center;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+.friend-list-content {
+  overflow-y: auto;
+}
+
+.friend-request-exist {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.friend-request-content {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.request-choice {
+  width: 100px;
+  height: 30px;
+  background: #4e9caf;
+  padding: 2px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 5px;
+  line-height: 25px;
+}
+
+.request-button {
+  width: 115px;
+  height: 20px;
+  background: #4e9caf;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  line-height: 25px;
+  text-decoration: none;
+}
+
+.interest-tag {
+  background-color: #2463eb;
+  color: #fff;
+  border-radius: 4px;
+  padding: 4px;
+  text-decoration: none;
+  margin: 5px;
+  display: inline-block;
+}
+
+.right-side {
+  flex: 70%;
+  padding: 10px;
+  background-color: #cacfd2;
+}
+
+.profilepost-body {
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: left;
+  background-color: #fff;
+}
+
+.upload-post {
+  max-height: 30%;
+  width: 60%;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.upload-post-button {
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.upload-image {
+  padding: 5px;
+  float: left;
+  cursor: pointer;
+}
+
+.message-post {
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  width: 100%;
+  max-height: 100px;
+  resize: none;
+  outline: none;
+}
+
+.profile-link {
+  text-decoration: none;
+  color: black;
+}
+
+.profile-link:hover {
+  font-size: 110%;
+}
+
+@media (max-width: 900px) {
+  .profile-body {
+    flex-direction: column;
+  }
+
+  .profile-content {
+    padding: 5px;
+  }
+
+  .profile-details {
+    font-size: 14px;
+  }
+
+  .profile-name {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .request-button {
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  .friend-list {
+    font-size: 14px;
+  }
+
+  .upload-post {
+    width: 80%;
+  }
+
+  .profilepost-body {
+    width: 80%;
+  }
+}

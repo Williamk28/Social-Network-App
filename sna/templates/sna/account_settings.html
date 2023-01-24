@@ -1,0 +1,47 @@
+{% extends 'sna/main.html' %} 
+{% load static %} 
+{% block content %}
+
+<div class="account-body">
+  <div class="account-container">
+    <div class="accountTitle">Account Settings</div>
+
+    <div class="picture">
+      {% if user.profile_img %}
+        <img class="profile-pic" src="{{user.profile_img.url}}" />
+      {% else %}
+      <img
+        class="profile-pic"
+        src="{% static 'images/default_profile_picture.jpg' %}"
+      />
+      {% endif %}
+    </div>
+
+    <div class="account-content">
+      <form method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div class="account-details">
+          {% for field in form %}
+            <div class="account-input">
+              {{field.errors}} {{field.label_tag}} {{field}}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="button-wrapper">
+          <button class="submit" type="submit">Update</button>
+        </div>
+      </form>
+
+      {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      
+    </div>
+  </div>
+</div>
+
+{% endblock %}

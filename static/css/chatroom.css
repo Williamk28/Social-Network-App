@@ -1,0 +1,125 @@
+.chatroom-body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: lightgray;
+}
+
+.chatroom-container {
+  height: 80vh;
+  min-width: 80vw;
+  background-color: #fff;
+  padding: 25px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.chatroom-content {
+  max-height: 64vh;
+  height: 100%;
+  border: 1px solid;
+  overflow-y: scroll;
+  padding: 5px;
+  margin-top: 15px;
+}
+
+.chatroom-send {
+  width: 100%;
+  margin: 20px 0 12px 0;
+}
+
+.send-chat {
+  float: left;
+  width: 88%;
+}
+
+.chat-button-wrapper {
+  float: right;
+  width: 8%;
+  height: 40px;
+}
+
+.uploadchat-button-wrapper {
+  height: 100%;
+  width: 100%;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.messageContainer {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.messageUsername {
+  font-weight: bold;
+  font-size: 18px;
+  text-decoration: underline;
+}
+
+.message-input {
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.upload-message-button {
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+#livechat-submit{
+  margin-top: 20px;
+}
+
+@media (max-height: 920px) {
+  .chatroom-content {
+    max-height: 60vh;
+  }
+}
+
+@media (max-width: 800px) {
+  .send-chat {
+    width: 80%;
+  }
+  .chat-button-wrapper {
+    width: 15%;
+  }
+
+  .message-input {
+    height: 30px;
+  }
+
+  .upload-message-button {
+    height: 30px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 500px) {
+  .chatroom-content {
+    min-height: 62vh;
+  }
+}
+
+@media (max-width: 385px) {
+  .chatroom-content {
+    min-height: 57vh;
+    max-height: 57vh;
+  }
+}

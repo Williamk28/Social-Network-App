@@ -1,0 +1,30 @@
+{% extends 'sna/main.html' %} 
+{% load static %} 
+{% block content %}
+
+<script src="{% static 'javascript/chatroom.js' %}"></script>
+
+<div class="chatroom-body">
+  <div class="chatroom-container">
+    <h1 class="title">{{room}}</h1>
+    <hr>
+    <div class="chatroom-content" id="display"></div>
+
+    <div class="chatroom-send">
+      <form id="post-form">
+        {% csrf_token %}
+        <input type="hidden" name="room_id" id="room_id" value="{{room_name}}">
+
+        <div class="send-chat">
+          <input type="text" name="message" id="message" class="message-input" placeholder="Enter Message...">
+        </div>
+
+        <div class="chat-button-wrapper">
+          <button class="upload-message-button" type="submit">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

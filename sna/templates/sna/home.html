@@ -1,0 +1,66 @@
+{% extends 'sna/main.html' %} 
+{% load static %} 
+{% block content %}
+
+<div class="home-body">
+  <div class="home-container">
+    <br>
+    {% if not new_post_feed %}
+      <span> No posts available... Add some friends :)</span>
+    {% else %} 
+    {% for post in new_post_feed %}
+      <div class="post-body">
+        <div class="post-header">
+          <a class="profile-link" href="{% url 'profile' post.username %}">
+            {{post.username}}
+          </a>
+        </div>
+        <div class="post-date">{{post.post_date}}</div>
+        <hr>
+        <div class="post-message">{{post.message|linebreaksbr}}</div>
+
+        {% if post.image %}
+          <img class="post-image" src="{{post.image.url}}">
+        {% endif %} 
+        {% if post.no_of_likes == 0 %}
+          <span class="post-likes">0 Likes</span>
+        {% else %}
+          <span class="post-likes">{{post.no_of_likes}} 
+            Like{% if post.no_of_likes > 1 %}s{% endif %}
+          </span>
+        {% endif %}
+
+        <a href="/like-post?post_id={{post.id}}" class="icon-link">
+          <img class="icon" src="{% static 'images/like_icon.png' %}">
+        </a>
+
+        <div class="upload-comment">
+          <form method="POST">
+            {%csrf_token%}
+            <input type="hidden" name="post" id="post" value="{{post.id}}">
+            {{form.message}}
+            <button class="upload-comment-button" type="submit">
+              Upload Comment
+            </button>
+          </form>
+        </div>
+
+        <div class="post-comments">
+          {% for comment in post.comments.all %}
+            <hr>
+            <div class="post-header">
+              <a class="profile-link" href="{% url 'profile' post.username %}">
+                {{comment.username}}
+              </a>
+            </div>
+            <div class="post-date">{{comment.post_date}}</div>
+            <div class="post-message">{{comment.message|linebreaksbr}}</div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %} 
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

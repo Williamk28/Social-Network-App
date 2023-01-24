@@ -1,0 +1,43 @@
+{% extends 'sna/login_main.html' %} 
+{% block content %}
+
+<div class="login-body">
+  <div class="login-container">
+    <div class="login-title">Register</div>
+    <div class="login-content">
+      <form method="POST">
+        {%csrf_token%}
+        <div class="login-details">
+          <div class="login-input">
+            <span class="input-name"> Username </span>
+            {{form.username.errors}} {{form.username}}
+          </div>
+          <div class="login-input">
+            <span class="input-name"> Password </span>
+            {{form.password1.errors}} {{form.password1}}
+          </div>
+          <div class="login-input">
+            <span class="input-name"> Email </span>
+            {{form.email.errors}} {{form.email}}
+          </div>
+          <div class="login-input">
+            <span class="input-name"> Confirm Password </span>
+            {{form.password2.errors}} {{form.password2}}
+          </div>
+          <div class="login-input">
+            <span class="input-name"> Date of Birth </span>
+            {{form.dob.errors}} {{form.dob}}
+          </div>
+        </div>
+        <div class="button-wrapper">
+          <button class="submit" type="submit">Sign Up</button>
+        </div>
+      </form>
+      <span>Already have an account?
+        <a href="{% url 'login' %}" class="login">Login</a>
+      </span>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
