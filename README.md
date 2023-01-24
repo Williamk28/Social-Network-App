@@ -2,6 +2,8 @@
 
 A Social Network App that allows you and your friends to socialise online and be able to communicate via a live chatroom.
 
+![Login Page](https://user-images.githubusercontent.com/44909676/214360030-e98c335f-600e-4845-954d-4d3189efac69.JPG)
+![Register Page](https://user-images.githubusercontent.com/44909676/214360123-c307ceed-9ea5-4b63-9419-5abe5d264399.JPG)
 ![Home Page](https://user-images.githubusercontent.com/44909676/214359221-f0d29e62-66be-4eae-8ff2-cc257ffbd3bd.JPG)
 ![Profile Page](https://user-images.githubusercontent.com/44909676/214359299-cb25b8f9-dc79-49e5-98ee-21a15490c50e.JPG)
 ![Account Settings](https://user-images.githubusercontent.com/44909676/214359349-e9d0134e-5a72-4ed6-bea9-37ebec0c6d12.JPG)
